@@ -36,12 +36,12 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for APIs
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/signup", "/login", "/h2-console/**").permitAll() // ✅ Allow signup & login without auth
-                        .anyRequest().authenticated() // ✅ All other requests require authentication
+                        .requestMatchers("/signup", "/login", "/h2-console/**").permitAll() 
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login") // ✅ Custom login endpoint
-                        .defaultSuccessUrl("/items", true) // ✅ Redirect after login
+                        .loginPage("/login") // Custom login option
+                        .defaultSuccessUrl("/items", true) // Redirection
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -50,7 +50,7 @@ public class SecurityConfig {
                         .permitAll()
                 );
 
-        // ✅ Allow H2 console access (only if needed)
+       //Not required as h2 database is not used but used it while developing 
         http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
 
         return http.build();
@@ -65,7 +65,7 @@ public class SecurityConfig {
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(customUserDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder()); // ✅ Ensure encrypted passwords
+        authProvider.setPasswordEncoder(passwordEncoder());//For encrypted passwords
         return authProvider;
     }
 
