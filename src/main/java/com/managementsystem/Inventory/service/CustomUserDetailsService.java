@@ -17,7 +17,7 @@ import java.util.Collections;
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
-    @Override
+    @Override// Handles null access of details 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         com.managementsystem.Inventory.model.User user =userRepository.findByUsername(username)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found with username: " + username));
