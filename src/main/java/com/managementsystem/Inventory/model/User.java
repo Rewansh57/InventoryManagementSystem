@@ -6,10 +6,10 @@ import jakarta.persistence.*;
 @Table(name = "app_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//For auto generation of ID which is a primary key)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false)//Defining user details based on if they can be null or not 
     private String username;
 
     @Column(nullable = false)
