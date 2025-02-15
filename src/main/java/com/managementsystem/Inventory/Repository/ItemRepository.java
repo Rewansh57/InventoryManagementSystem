@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 //Defining repository for items in inventory and jpa support for database
+//Uses PostgreSQL as primary database
 public interface ItemRepository  extends JpaRepository<Item, Long> {
     //For fuzzy seaching even with a minor spelling mistakes and case senstivity basically a sql query
     @Query("SELECT i FROM Item i WHERE LOWER(i.name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
