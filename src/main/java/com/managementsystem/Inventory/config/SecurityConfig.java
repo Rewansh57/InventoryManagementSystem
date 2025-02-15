@@ -20,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 it to redirect the endpoints to authorisation forms which I dont have any clue on how to solve
 
  */
+//The application uses Spring Security's form-based login with session management.
 //Uses Bcrypt for encrypting passwords
 //The authenticated users get to /items endpoint
 public class SecurityConfig {
@@ -29,7 +30,7 @@ public class SecurityConfig {
     public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
     }
-
+//Bean definition for spring management of instances 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
